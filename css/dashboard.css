@@ -1,0 +1,155 @@
+        /* :root {
+            --primary: #3B82F6;
+            --primary-hover: #2563EB;
+            --bg: #F5F6FA;
+            --card: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-medium: #475569;
+            --border: #E2E8F0;
+            --success: #22C55E;
+            --danger: #EF4444;
+            --radius: 12px;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --sidebar-width: 260px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+        }
+
+        /* ===== Top navbar ===== */
+        .navbar {
+            margin-left: var(--sidebar-width);
+            height: 70px;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--text-dark)
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F1F5F9
+        }
+
+        /* ===== Main content ===== */
+        .main {
+            margin-left: var(--sidebar-width);
+            padding: 24px
+        }
+
+        .cards {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border)
+        }
+
+        .card h3 {
+            margin: 0;
+            color: var(--text-medium);
+            font-size: 14px
+        }
+
+        .card .value {
+            margin-top: 8px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark)
+        }
+
+        .green {
+            color: var(--success) !important
+        }
+
+        .red {
+            color: var(--danger) !important
+        }
+
+        .table-box {
+            background: var(--card);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        thead {
+            background: #F1F5F9
+        }
+
+        th {
+            padding: 12px;
+            text-align: left;
+            color: var(--text-medium);
+            font-size: 14px
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dark);
+            font-size: 14px
+        }
+
+        .status-present {
+            background: #D1FAE5;
+            color: var(--success);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .status-absent {
+            background: #FEE2E2;
+            color: var(--danger);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        @media (max-width: 570px) {
+            .card {
+                min-width: 170px;
+            }
+
+            .cards {
+                gap: 12px;
+            }
+        }
+
+
+

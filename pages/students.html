@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../slider.css">
+</head>
+
+<body>
+
+    <!-- toggle button -->
+    <button id="menuBtn" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+    <!-- sidebar -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Main menu">
+        <div class="menu-title">
+            <h2>Attendance System</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <div class="menu-item"><a href="./dashboard.html">Dashboard</a></div>
+        <div class="menu-item active"><a href="">Add Student</a></div>
+        <div class="menu-item"><a href="./studen-list.html">Student List</a></div>
+        <div class="menu-item"><a href="./mark-attendance.html">Mark Attendance</a></div>
+        <div class="menu-item"><a href="">Search by Roll No</a></div>
+        <div class="menu-item"><a href="">Attendance Report</a></div>
+        <div class="menu-item" id="logoutBtn">Logout</div>
+    </aside>
+
+    <div id="overlay" class="overlay" tabindex="-1"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <nav class="students-page-navbar">
+            <div><a href="">Home</a>/</div>
+            <div><a href="">Students</a>/</div>
+            <div><a href="" class="active">Add New Students</a></div>
+        </nav>
+
+        <h2 class="page-title">Add New Student</h2>
+        <p class="page-subtitle">Fill in the details below to add a new student to the system.</p>
+
+        <div class="form-card">
+
+            <form>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Enter student's full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Roll Number</label>
+                        <input type="text" id="roll" placeholder="e.g., 101">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <select id="class">
+                            <option value="">Select Class</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Section</label>
+                        <select id="section">
+                            <option value="">Select Section</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="gender">
+                            <option>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="age">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea id="address" placeholder="Enter student's address"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Parent Contact</label>
+                    <input type="text" id="phone" placeholder="Enter parent's phone number">
+                </div>
+                <br>
+            <hr>
+            <br>
+
+                <div class="button-div">
+                    <button type="submit" class="add-btn" id="addstudentBtn">Add Student</button>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Elements
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mq = window.matchMedia('(max-width: 992px)');
+
+        // Open/close sidebar on small screens by toggling 'open' class.
+        // Use 'open' instead of 'hidden' so desktop rules are unaffected.
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            // show overlay to block content clicks when sidebar open on small screens
+            if (mq.matches) {
+                overlay.classList.toggle('show', isOpen);
+            } else {
+                overlay.classList.remove('show');
+            }
+        }
+
+        // click menu button
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // click overlay to close
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // if user clicks inside main content on mobile while sidebar open -> close sidebar
+        // document.getElementById('mainContent').addEventListener('click', () => {
+        //     if (mq.matches && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // handle Escape key to close sidebar on mobile
+        // document.addEventListener('keydown', (e) => {
+        //     if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // Keep sidebar visible on resize to desktop: remove mobile-only overlay/open state
+        window.addEventListener('resize', () => {
+            if (!mq.matches) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+    <script src="../app.js"></script>
+
+</body>
+
+</html>

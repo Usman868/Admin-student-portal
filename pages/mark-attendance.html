@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../slider.css">
+    <link rel="stylesheet" href="../css/mark-attendance.css">
+</head>
+
+<body>
+    <!-- toggle button -->
+    <button id="menuBtn" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+    <!-- sidebar -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Main menu">
+        <div class="menu-title">
+            <h2>Attendance System</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <div class="menu-item "><a href="./dashboard.html">Dashboard</a></div>
+        <div class="menu-item"><a href="./students.html">Add Student</a></div>
+        <div class="menu-item"><a href="./studen-list.html">Student List</a></div>
+        <div class="menu-item active"><a href="">Mark Attendance</a></div>
+        <div class="menu-item"><a href="">Search by Roll No</a></div>
+        <div class="menu-item"><a href="">Attendance Report</a></div>
+        <div class="menu-item" id="logoutBtn">Logout</div>
+    </aside>
+
+    <!-- overlay shown on small screens when sidebar open -->
+    <div id="overlay" class="overlay" tabindex="-1"></div>
+    <div class="attendance-container">
+        <h2 class="page-title">Mark Attendance — October 26, 2023</h2>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>Select Class</label>
+                <select id="class">
+                    <option value="">Select Class</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Select Section</label>
+                <select id="section">
+                    <option value="">Select Section</option>
+                </select>
+            </div>
+
+            <button class="load-btn" id="load-student-att">Load Students</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ROLL NO</th>
+                        <th>STUDENT NAME</th>
+                        <th>PRESENT</th>
+                        <th>ABSENT</th>
+                    </tr>
+                </thead>
+
+                <tbody id="attendance-table">
+                     <tr><td colspan="4" align="center">Student rows will be dynamically added here</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button class="save-btn" id="save-attendance">Save Attendance</button>
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+        // Elements
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mq = window.matchMedia('(max-width: 992px)');
+
+        // Open/close sidebar on small screens by toggling 'open' class.
+        // Use 'open' instead of 'hidden' so desktop rules are unaffected.
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            // show overlay to block content clicks when sidebar open on small screens
+            if (mq.matches) {
+                overlay.classList.toggle('show', isOpen);
+            } else {
+                overlay.classList.remove('show');
+            }
+        }
+
+        // click menu button
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // click overlay to close
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // if user clicks inside main content on mobile while sidebar open -> close sidebar
+        // document.getElementById('mainContent').addEventListener('click', () => {
+        //     if (mq.matches && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // handle Escape key to close sidebar on mobile
+        // document.addEventListener('keydown', (e) => {
+        //     if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // Keep sidebar visible on resize to desktop: remove mobile-only overlay/open state
+        window.addEventListener('resize', () => {
+            if (!mq.matches) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+    <script src="../app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #F5F6FA;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-group {
+            width: 380px;
+            padding: 30px;
+            background-color: #FFFFFF;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-title {
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 25px;
+            color: #1E293B;
+            font-size: 28px;
+            font-weight: bolder;
+        }
+
+        .input-div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-div>label {
+            color: #475569;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+
+        .input-field {
+            width: 350px;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .input-field::placeholder {
+            color: #475569;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+
+        .input-field:hover {
+            border-color: #CBD5E1;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+        }
+
+        .eye-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-45%);
+            cursor: pointer;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            padding: 5px;
+            background: none;
+        }
+
+        .eye-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .eye-btn:focus {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        #hide-pasword {
+            display: none;
+            background-color: transparent;
+        }
+
+        #view-pasword {
+            display: none;
+            background-color: transparent;
+        }
+
+        .submit-btn {
+            width: 375px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            background: #3B82F6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #2563EB;
+        }
+
+        .teachers-only {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="login" class="input-group">
+            <h1 class="login-title">Teacher Login</h1>
+            <div class="input-div">
+                <label for="login-email">Email</label>
+                <input type="email" class="input-field" id="login-email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-div">
+                <label for="login-pasword">Pasword</label>
+                <div class="input-wrapper">
+                    <input type="password" class="input-field" id="login-pasword" placeholder="Enter your Password"
+                        required>
+                    <button class="eye-btn" onclick="togglePassword()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-eye" viewBox="0 0 16 16" id="view-pasword">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                            <path
+                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-eye-slash" viewBox="0 0 16 16" id="hide-pasword">
+                            <path
+                                d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
+                            <path
+                                d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                            <path
+                                d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn" onclick="loginBtn(event)">Log In</button>
+            <span class="teachers-only">Only authorized teachers can log in</span>
+        </form>
+    </div>
+    <script>
+        var userlogin = {
+            email: "teacher123@gmail.com",
+            password: "teacher123"
+        }
+        var input = document.getElementById("login-pasword");
+        var viewBtn = document.getElementById("view-pasword");
+        var hideBtn = document.getElementById("hide-pasword");
+        var hide = true
+        input.addEventListener("input", function () {
+            if (input.value.length > 0 && hide) {
+                hideBtn.style.display = "block";
+                viewBtn.style.display = "none";
+            }
+            else if (input.value.length > 0 && !hide) {
+                viewBtn.style.display = "block";
+                hideBtn.style.display = "none";
+            } else {
+                viewBtn.style.display = "none";
+                hideBtn.style.display = "none";
+            }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Enter" && document.activeElement === input) {
+                loginBtn(event);
+            }
+        });
+
+        function togglePassword() {
+            event.preventDefault();
+            if (input.type === "password") {
+                input.type = "text";
+                hideBtn.style.display = "none";
+                viewBtn.style.display = "Block";
+                hide = false;
+            } else {
+                input.type = "password";
+                hideBtn.style.display = "Block";
+                viewBtn.style.display = "none";
+                hide = true;
+            }
+            input.focus();
+
+        }
+        function loginBtn(event) {
+            event.preventDefault();
+            var email = document.getElementById("login-email").value;
+            var password = document.getElementById("login-pasword").value;
+
+            if (email === userlogin.email && password === userlogin.password) {
+                alert("Login Successful!");
+                localStorage.setItem("loggedIn", "true");
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        }
+        function checkLoginStatus() {
+            var loggedIn = localStorage.getItem("loggedIn");
+            if (loggedIn === "true") {
+                window.location.href = "pages/dashboard.html";
+            }
+        }
+        checkLoginStatus();
+
+    </script>
+
+</body>
+
+</html>

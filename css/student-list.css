@@ -1,0 +1,275 @@
+/* Main content wrapper */
+.main-content {
+    margin-left: 260px;
+    padding: 25px;
+    background: #F8FAFC;
+    font-family: Inter, sans-serif;
+}
+
+/* .main-content {
+    padding: 25px;
+} */
+
+/* Page Title */
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 25px;
+}
+
+/* Header Row */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Search Box */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box svg {
+    position: absolute;
+    left: 12px;
+}
+
+.search-box input {
+    width: 250px;
+    padding: 10px 12px 10px 32px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #94A3B8;
+}
+
+/* Add Student Button */
+.add-student-btn {
+    background: #3B82F6;
+    color: white;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Table Container */
+.table-container {
+    background: #FFFFFF;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    margin-top: 10px;
+}
+
+/* Table Styling */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.students-table thead tr {
+    background: #F8FAFC;
+}
+
+.students-table th {
+    padding: 18px;
+    text-align: left;
+    color: #64748B;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.students-table td {
+    padding: 22px 18px;
+    border-bottom: 1px solid #E2E8F0;
+    color: #334155;
+}
+
+/* Action Icons */
+.actions {
+    font-size: 18px;
+    letter-spacing: 8px;
+}
+
+/* Footer */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    font-size: 14px;
+    color: #475569;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
+.pg-btn,
+.pg-arrow {
+    border: 1px solid #CBD5E1;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pg-btn.active {
+    background: #3B82F6;
+    color: #fff;
+    border-color: #3B82F6;
+}
+
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 0px;
+    }
+    .page-title{
+        padding-left: 30px;
+    }
+
+}
+
+/* ----------------------------------
+   Responsive Students Page
+-------------------------------------*/
+
+/* Tablet (max-width: 1024px) */
+/* @media (max-width: 1024px) {
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .header-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+} */
+
+/* Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+
+    .page-title {
+        font-size: 26px;
+    }
+
+    /* .header-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    } */
+
+    .search-box,
+    .add-student-btn {
+        width: 100%;
+    }
+
+    .add-student-btn {
+        text-align: center;
+        padding: 12px;
+    }
+
+    /* Table scroll */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .students-table {
+        min-width: 700px;
+    }
+
+    .students-table th,
+    .students-table td {
+        padding: 14px 12px;
+    }
+}
+
+/* Mobile Portrait (max-width: 480px) */
+@media (max-width: 480px) {
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    /* Reduce font sizes */
+    .students-table {
+        font-size: 12px;
+    }
+
+    .students-table th {
+        font-size: 11px;
+        padding: 12px 10px;
+    }
+
+    .students-table td {
+        padding: 14px 10px;
+    }
+
+    /* Pagination */
+    .pagination {
+        gap: 4px;
+    }
+
+    .pg-btn,
+    .pg-arrow {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .actions {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-title {
+        margin-bottom: 0px;
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .header-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .pg-btn,
+    .pg-arrow {
+        padding: 0px 8px;
+        font-size: 12px;
+    }
+}

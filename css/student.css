@@ -1,0 +1,166 @@
+        /* :root {
+            --primary: #3B82F6;
+            --primary-hover: #2563EB;
+            --bg: #F5F6FA;
+            --card: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-medium: #475569;
+            --border: #E2E8F0;
+            --success: #22C55E;
+            --danger: #EF4444;
+            --radius: 12px;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --sidebar-width: 260px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 25px 25px 25px 40px;
+        }
+
+        .students-page-navbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .students-page-navbar div a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+            margin-right: 15px;
+        }
+
+        .students-page-navbar div a.active {
+            color: #1E293B;
+            font-weight: 600;
+        }
+
+
+        .page-title {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #1E293B;
+        }
+
+        .page-subtitle {
+            color: #475569;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: auto;
+            max-width: 900px;
+            /* margin: auto; */
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #475569;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1E293B;
+        }
+
+        .form-group input::placeholder {
+            color: #475569
+        }
+
+        textarea::placeholder {
+            color: #475569;
+        }
+
+        textarea {
+            resize: none;
+            min-height: 80px;
+            max-height: 150px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        /* Add Button */
+        .add-btn {
+            margin-top: 10px;
+            background: #3B82F6;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .add-btn:hover {
+            background-color: #2563EB;
+        }
+
+
+        .button-div {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 30px;
+            }
+
+            .students-page-navbar {
+                padding-left: 20px;
+                gap: 5px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+            .form-row {
+                flex-direction: column;
+            }
+        }

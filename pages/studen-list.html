@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../slider.css">
+    <link rel="stylesheet" href="../css/student-list.css">
+</head>
+
+<body>
+    <!-- toggle button -->
+    <button id="menuBtn" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+    <!-- sidebar -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Main menu">
+        <div class="menu-title">
+            <h2>Attendance System</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <div class="menu-item "><a href="./dashboard.html">Dashboard</a></div>
+        <div class="menu-item"><a href="./students.html">Add Student</a></div>
+        <div class="menu-item active"><a href="">Student List</a></div>
+        <div class="menu-item"><a href="./mark-attendance.html">Mark Attendance</a></div>
+        <div class="menu-item"><a href="">Search by Roll No</a></div>
+        <div class="menu-item"><a href="">Attendance Report</a></div>
+        <div class="menu-item" id="logoutBtn">Logout</div>
+    </aside>
+
+    <!-- overlay shown on small screens when sidebar open -->
+    <div id="overlay" class="overlay" tabindex="-1"></div>
+
+<div class="main-content">
+
+<div class="content-header">
+    <h1 class="page-title">Students</h1>
+
+    <div class="header-actions">
+        <div class="search-box">
+            <svg width="16" height="16" fill="#94A3B8" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 
+                1.415-1.414l-3.85-3.85zm-5.242.656a5 5 0 1 1 
+                0-10 5 5 0 0 1 0 10z"/>
+            </svg>
+            <input type="text" placeholder="Search students...">
+        </div>
+
+        <button class="add-student-btn">
+            <span>+</span> Add Student
+        </button>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="students-table">
+        <thead>
+            <tr>
+                <th>ROLL NO</th>
+                <th>NAME</th>
+                <th>CLASS</th>
+                <th>GENDER</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>#1024</td>
+                <td>Liam Johnson</td>
+                <td>10-A</td>
+                <td>Male</td>
+                <td class="actions">
+                    👁️ ✏️ 🗑️
+                </td>
+            </tr>
+
+            <tr>
+                <td>#1025</td>
+                <td>Olivia Smith</td>
+                <td>10-B</td>
+                <td>Female</td>
+                <td class="actions">
+                    👁️ ✏️ 🗑️
+                </td>
+            </tr>
+
+            <tr>
+                <td>#1026</td>
+                <td>Noah Williams</td>
+                <td>9-A</td>
+                <td>Male</td>
+                <td class="actions">
+                    👁️ ✏️ 🗑️
+                </td>
+            </tr>
+
+            <tr>
+                <td>#1027</td>
+                <td>Emma Brown</td>
+                <td>11-C</td>
+                <td>Female</td>
+                <td class="actions">
+                    👁️ ✏️ 🗑️
+                </td>
+            </tr>
+
+            <tr>
+                <td>#1028</td>
+                <td>James Jones</td>
+                <td>10-A</td>
+                <td>Male</td>
+                <td class="actions">
+                    👁️ ✏️ 🗑️
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-footer">
+        <p>Showing 1 to 5 of 20 results</p>
+
+        <div class="pagination">
+            <button class="pg-arrow">&lt;</button>
+            <button class="pg-btn active">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn">3</button>
+            <button class="pg-btn">...</button>
+            <button class="pg-btn">8</button>
+            <button class="pg-arrow">&gt;</button>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+
+    <script>
+        // Elements
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mq = window.matchMedia('(max-width: 992px)');
+
+        // Open/close sidebar on small screens by toggling 'open' class.
+        // Use 'open' instead of 'hidden' so desktop rules are unaffected.
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            // show overlay to block content clicks when sidebar open on small screens
+            if (mq.matches) {
+                overlay.classList.toggle('show', isOpen);
+            } else {
+                overlay.classList.remove('show');
+            }
+        }
+
+        // click menu button
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // click overlay to close
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // if user clicks inside main content on mobile while sidebar open -> close sidebar
+        // document.getElementById('mainContent').addEventListener('click', () => {
+        //     if (mq.matches && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // handle Escape key to close sidebar on mobile
+        // document.addEventListener('keydown', (e) => {
+        //     if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        //         sidebar.classList.remove('open');
+        //         overlay.classList.remove('show');
+        //         menuBtn.setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+
+        // Keep sidebar visible on resize to desktop: remove mobile-only overlay/open state
+        window.addEventListener('resize', () => {
+            if (!mq.matches) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

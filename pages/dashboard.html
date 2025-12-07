@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard — Fixed Toggle</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../slider.css">
+</head>
+
+<body>
+
+    <!-- toggle button -->
+    <button id="menuBtn" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+    <!-- sidebar -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Main menu">
+        <div class="menu-title">
+            <h2>Attendance System</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <div class="menu-item active"><a href="">Dashboard</a></div>
+        <div class="menu-item"><a href="./students.html">Add Student</a></div>
+        <div class="menu-item"><a href="./studen-list.html">Student List</a></div>
+        <div class="menu-item"><a href="./mark-attendance.html">Mark Attendance</a></div>
+        <div class="menu-item"><a href="">Search by Roll No</a></div>
+        <div class="menu-item"><a href="">Attendance Report</a></div>
+        <div class="menu-item" id="logoutBtn">Logout</div>
+    </aside>
+
+    <!-- overlay shown on small screens when sidebar open -->
+    <div id="overlay" class="overlay" tabindex="-1"></div>
+
+    <!-- navbar -->
+    <header class="navbar">
+        <h2>Dashboard</h2>
+        <div style="display:flex;align-items:center;gap:12px">
+            <div style="text-align:right">
+                <div style="font-weight:700;color:var(--text-dark)">Ms. Teacher</div>
+                <div style="font-size:12px;color:var(--text-medium)">Admin Panel</div>
+            </div>
+            <div class="avatar" aria-hidden="true"></div>
+        </div>
+    </header>
+
+    <!-- main content -->
+    <main class="main" id="mainContent">
+        <div class="cards" role="region" aria-label="summary cards">
+            <div class="card">
+                <h3>Total Students</h3>
+                <div class="value" id="total-students">-</div>
+            </div>
+
+            <div class="card">
+                <h3>Present Today</h3>
+                <div class="value green" id="total-present">-</div>
+            </div>
+
+            <div class="card">
+                <h3>Absent Today</h3>
+                <div class="value red" id="total-absent">-</div>
+            </div>
+
+            <div class="card">
+                <h3>New Admissions</h3>
+                <div class="value">-</div>
+            </div>
+        </div>
+
+        <div class="table-box" role="region" aria-label="Today's attendance">
+            <h3 style="margin:0 0 12px;color:var(--text-dark)">Today's Attendance</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="todays-attendanece">
+                    <!-- <tr>
+                        <td>101</td>
+                        <td>John Doe</td>
+                        <td>10-A</td>
+                        <td>2023-10-27</td>
+                        <td><span class="status-present">Present</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Jane Smith</td>
+                        <td>10-A</td>
+                        <td>2023-10-27</td>
+                        <td><span class="status-present">Present</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Peter Jones</td>
+                        <td>10-B</td>
+                        <td>2023-10-27</td>
+                        <td><span class="status-absent">Absent</span></td>
+                    </tr> -->
+                    <tr>
+                        <td colspan="5" align="center">Todays attendance data is not avalable </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Elements
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mq = window.matchMedia('(max-width: 992px)');
+
+        // Open/close sidebar on small screens by toggling 'open' class.
+        // Use 'open' instead of 'hidden' so desktop rules are unaffected.
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            // show overlay to block content clicks when sidebar open on small screens
+            if (mq.matches) {
+                overlay.classList.toggle('show', isOpen);
+            } else {
+                overlay.classList.remove('show');
+            }
+        }
+
+        // click menu button
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // click overlay to close
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // if user clicks inside main content on mobile while sidebar open -> close sidebar
+        document.getElementById('mainContent').addEventListener('click', () => {
+            if (mq.matches && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // handle Escape key to close sidebar on mobile
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Keep sidebar visible on resize to desktop: remove mobile-only overlay/open state
+        window.addEventListener('resize', () => {
+            if (!mq.matches) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+    <script src="../app.js"></script>
+
+</body>
+
+</html>
