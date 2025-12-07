@@ -297,3 +297,15 @@ saveAttendanceBtn?.addEventListener('click', function () {
     alert("Attendance saved!");
 });
 
+const logoutBtn = document.getElementById("logoutBtn")
+console.log(logoutBtn)
+logoutBtn?.addEventListener("click", function () {
+    // Remove the loggedIn flag from localStorage
+    localStorage.removeItem("loggedIn");
+
+    // Optionally, you can clear all localStorage if needed
+    // localStorage.clear();
+
+    // Redirect back to login page
+    window.location.href = "../index.html"; // adjust path according to your folder structure
+});
